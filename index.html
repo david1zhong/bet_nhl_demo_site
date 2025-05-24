@@ -152,6 +152,7 @@
     const btnLog = document.getElementById('tab-log');
     const panelBet = document.getElementById('panel-bet');
     const panelLog = document.getElementById('panel-log');
+    const logFrame= document.getElementById('logFrame');
 
     btnBet.addEventListener('click', () => {
       btnBet.classList.add('active');
@@ -165,6 +166,8 @@
       btnBet.classList.remove('active');
       panelLog.classList.add('active');
       panelBet.classList.remove('active');
+
+      logFrame.src = logFrame.src;
     });
   </script>
 
