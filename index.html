@@ -19,8 +19,6 @@
         --primary-fg: 222.2 47.4% 11.2%;
       }
     }
-
-    /* global reset & layout */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { width: 100%; height: 100%; }
     body {
@@ -33,8 +31,6 @@
         BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     }
-
-    /* header + tabs */
     header {
       background: hsl(var(--bg));
       border-bottom: 1px solid hsl(var(--fg)/0.2);
@@ -65,8 +61,6 @@
       color: hsl(var(--primary));
       border-bottom-color: hsl(var(--primary));
     }
-
-    /* main + panels */
     main {
       position: relative;
       flex: 1;
@@ -74,7 +68,7 @@
     }
     .panel {
       position: absolute;
-      inset: 0;                     /* top:0; right:0; bottom:0; left:0 */
+      inset: 0;
       display: flex;
       flex-direction: column;
       visibility: hidden;
@@ -87,16 +81,12 @@
       opacity: 1;
       pointer-events: auto;
     }
-
-    /* card header inside panel */
     .card-header {
       padding: 1rem;
       background: hsl(var(--bg));
       font-size: 1.25rem;
       font-weight: 700;
     }
-
-    /* embed / iframe fill */
     .embed-container {
       flex: 1;
       overflow: hidden;
@@ -112,8 +102,6 @@
   </style>
 </head>
 <body>
-
-  <!-- ===== HEADER ===== -->
   <header>
     <div class="site-title">
       NHL Betting Demo Site <span class="highlight">By: David Zhong</span>
@@ -124,9 +112,7 @@
     </div>
   </header>
 
-  <!-- ===== CONTENT PANELS ===== -->
   <main>
-    <!-- Bet Form Panel -->
     <section id="panel-bet" class="panel active">
       <div class="card-header">Place Your Bet Here 👇</div>
       <div class="embed-container">
@@ -134,9 +120,8 @@
       </div>
     </section>
 
-    <!-- Sheet Panel -->
     <section id="panel-log" class="panel">
-      <div class="card-header">Live Bet Log</div>
+      <div class="card-header">Your Bets Here 👇</div>
       <div class="embed-container">
         <iframe
           id="logFrame"
@@ -146,7 +131,6 @@
     </section>
   </main>
 
-  <!-- ===== TAB SWITCHING ===== -->
   <script>
     const btnBet = document.getElementById('tab-bet');
     const btnLog = document.getElementById('tab-log');
@@ -166,10 +150,8 @@
       btnBet.classList.remove('active');
       panelLog.classList.add('active');
       panelBet.classList.remove('active');
-
       logFrame.src = logFrame.src;
     });
   </script>
-
 </body>
 </html>
