@@ -89,7 +89,7 @@
     }
     .embed-container {
       flex: 1;
-      overflow: hidden;
+      overflow: auto;
       display: flex;
     }
     .embed-container embed,
@@ -165,6 +165,10 @@
     .table-container td:not(.feature) {
       text-align: center;
       font-size: 1.2rem;
+    }
+
+    .table-container tbody {
+      -webkit-overflow-scrolling: touch;
     }
   </style>
 </head>
