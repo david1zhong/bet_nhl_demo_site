@@ -99,6 +99,73 @@
       height: 100%;
       border: none;
     }
+
+
+    .table-container {
+      display: flex;
+      flex-direction: column;
+      width: clamp(700px, 90vw, 1200px);
+      max-height: 95%;
+      margin: 1.5rem auto;
+      background: hsl(var(--bg));
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+
+    .table-container table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .table-container thead {
+      background: hsl(var(--primary));
+      color: hsl(var(--primary-fg));
+    }
+    .table-container thead th {
+      position: sticky;
+      top: 0;
+      padding: 0.75rem 1rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+
+    .table-container tbody {
+      display: block;
+      overflow-y: auto;
+      max-height: calc(80% - 3.5rem);
+    }
+
+    .table-container thead tr,
+    .table-container tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    .table-container tbody tr:nth-child(odd) {
+      background: hsl(var(--fg) / 0.03);
+    }
+    .table-container tbody tr:hover {
+      background: hsl(var(--fg) / 0.06);
+    }
+
+    .table-container th,
+    .table-container td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid hsl(var(--fg) / 0.15);
+    }
+
+    .table-container td.feature {
+      text-align: left;
+    }
+    .table-container td:not(.feature) {
+      text-align: center;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
@@ -109,6 +176,7 @@
     <div class="tabs">
       <button id="tab-bet" class="active">Place Your Bet</button>
       <button id="tab-log">Live Bet Log</button>
+      <button id="tab-features">Features</button>
     </div>
   </header>
 
@@ -129,28 +197,99 @@
         ></iframe>
       </div>
     </section>
+
+    <section id="panel-features" class="panel">
+      <div class="card-header">List of Features 👇</div>
+      <div class="embed-container">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Demo App</th>
+                <th>Real App</th>
+                </tr>
+              </thead>
+            
+              <tbody>
+                <tr>
+                  <td class="feature">Today's NHL Games</td>
+                  <td>✅</td>
+                  <td>✅</td>
+                </tr>
+            
+                <tr>
+                  <td class="feature">Live Game Updates</td>
+                  <td>✅</td>
+                  <td>✅</td>
+                </tr>
+
+                <tr>
+                  <td class="feature">Records Bet on Google Sheet</td>
+                  <td>✅</td>
+                  <td>✅</td>
+                </tr>
+            
+                <tr>
+                  <td class="feature">Fake Matchups (If No Games Today)</td>
+                  <td>✅</td>
+                  <td>❌</td>
+                </tr>
+
+                <tr>
+                  <td class="feature">Daily Auto Win/Loss Bet Check in Google Sheet</td>
+                  <td>❌</td>
+                  <td>✅</td>
+                </tr>
+
+                <tr>
+                  <td class="feature">Duplicate Bet Check in Google Sheet</td>
+                  <td>❌</td>
+                  <td>✅</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <script>
     const btnBet = document.getElementById('tab-bet');
     const btnLog = document.getElementById('tab-log');
+    const btnFeatures = document.getElementById('tab-features');
     const panelBet = document.getElementById('panel-bet');
     const panelLog = document.getElementById('panel-log');
+    const panelFeatures = document.getElementById('panel-features');
     const logFrame= document.getElementById('logFrame');
 
     btnBet.addEventListener('click', () => {
       btnBet.classList.add('active');
       btnLog.classList.remove('active');
+      btnFeatures.classList.remove('active');
       panelBet.classList.add('active');
       panelLog.classList.remove('active');
+      panelFeatures.classList.remove('active');
     });
 
     btnLog.addEventListener('click', () => {
       btnLog.classList.add('active');
       btnBet.classList.remove('active');
+      btnFeatures.classList.remove('active');
       panelLog.classList.add('active');
       panelBet.classList.remove('active');
+      panelFeatures.classList.remove('active');
       logFrame.src = logFrame.src;
+    });
+
+    btnFeatures.addEventListener('click', () => {
+      btnFeatures.classList.add('active');
+      btnLog.classList.remove('active');
+      btnBet.classList.remove('active');
+      panelFeatures.classList.add('active');
+      panelLog.classList.remove('active');
+      panelBet.classList.remove('active');
     });
   </script>
 </body>
